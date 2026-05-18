@@ -1,7 +1,7 @@
 CAPI=2:
 
-name: polito:isa-lab:dma_hw_ff:1.0.0
-description: Example for dma hardware fifo.
+name: uclm:arco:dma_hw_ff:1.0.0
+description: Average of hyperespectral pixel using hw fifo dma.
 
 filesets:
   rtl:
