@@ -6,7 +6,7 @@
 // 
 // ==============================================================
 
-`timescale 1 ns / 1 ps
+//`timescale 1 ns / 1 ps
 
 module Avg_dup_flow_control_loop_pipe_sequential_init(
         ap_clk,

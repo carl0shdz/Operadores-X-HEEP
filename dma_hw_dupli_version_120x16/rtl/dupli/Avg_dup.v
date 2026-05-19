@@ -4,17 +4,14 @@
 // Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 // ==============================================================
 
-`timescale 1 ns / 1 ps 
+//`timescale 1 ns / 1 ps 
 
-(* CORE_GENERATION_INFO="Avg_dup_Avg_dup,hls_ip_2023_2,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7a100t-csg324-1,HLS_INPUT_CLOCK=10.000000,HLS_INPUT_ARCH=dataflow,HLS_SYN_CLOCK=8.160000,HLS_SYN_LAT=964,HLS_SYN_TPT=965,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=110,HLS_SYN_LUT=351,HLS_VERSION=2023_2}" *)
+(* CORE_GENERATION_INFO="Avg_dup_Avg_dup,hls_ip_2023_2,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7a100t-csg324-1,HLS_INPUT_CLOCK=10.000000,HLS_INPUT_ARCH=dataflow,HLS_SYN_CLOCK=8.160000,HLS_SYN_LAT=974,HLS_SYN_TPT=975,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=77,HLS_SYN_LUT=436,HLS_VERSION=2023_2}" *)
 
 module Avg_dup (
         ImgBuff_in_dout,
         ImgBuff_in_empty_n,
         ImgBuff_in_read,
-        Centro_dout,
-        Centro_empty_n,
-        Centro_read,
         imgBuff_out_din,
         imgBuff_out_full_n,
         imgBuff_out_write,
@@ -31,9 +28,6 @@ module Avg_dup (
 input  [15:0] ImgBuff_in_dout;
 input   ImgBuff_in_empty_n;
 output   ImgBuff_in_read;
-input  [15:0] Centro_dout;
-input   Centro_empty_n;
-output   Centro_read;
 output  [15:0] imgBuff_out_din;
 input   imgBuff_out_full_n;
 output   imgBuff_out_write;
@@ -53,7 +47,6 @@ wire    Block_entry1_proc_U0_ap_ready;
 wire    Block_entry1_proc_U0_ImgBuff_in_read;
 wire   [15:0] Block_entry1_proc_U0_imgBuff_out_din;
 wire    Block_entry1_proc_U0_imgBuff_out_write;
-wire    Block_entry1_proc_U0_Centro_read;
 
 Avg_dup_Block_entry1_proc Block_entry1_proc_U0(
     .ap_clk(ap_clk),
@@ -69,17 +62,12 @@ Avg_dup_Block_entry1_proc Block_entry1_proc_U0(
     .ImgBuff_in_read(Block_entry1_proc_U0_ImgBuff_in_read),
     .imgBuff_out_din(Block_entry1_proc_U0_imgBuff_out_din),
     .imgBuff_out_full_n(imgBuff_out_full_n),
-    .imgBuff_out_write(Block_entry1_proc_U0_imgBuff_out_write),
-    .Centro_dout(Centro_dout),
-    .Centro_empty_n(Centro_empty_n),
-    .Centro_read(Block_entry1_proc_U0_Centro_read)
+    .imgBuff_out_write(Block_entry1_proc_U0_imgBuff_out_write)
 );
 
 assign Block_entry1_proc_U0_ap_continue = 1'b1;
 
 assign Block_entry1_proc_U0_ap_start = ap_start;
-
-assign Centro_read = Block_entry1_proc_U0_Centro_read;
 
 assign ImgBuff_in_read = Block_entry1_proc_U0_ImgBuff_in_read;
 

@@ -1,29 +1,29 @@
 
 `verilator_config
 
-lint_off -rule UNOPTFLAT -file "*/dma_hw_ff.sv"
-lint_off -rule UNUSED    -file "*/dma_hw_ff.sv"
-lint_off -rule UNDRIVEN  -file "*/dma_hw_ff.sv"
-lint_off -rule WIDTH     -file "*/dma_hw_ff.sv"
-lint_off -rule DECLFILENAME -file "*/dma_hw_ff.sv"
+lint_off -rule UNOPTFLAT -file "*/dupli.sv"
+lint_off -rule UNUSED    -file "*/dupli.sv"
+lint_off -rule UNDRIVEN  -file "*/dupli.sv"
+lint_off -rule WIDTH     -file "*/dupli.sv"
+lint_off -rule DECLFILENAME -file "*/dupli.sv"
 
 // -------------------------------------------------------------
 // HLS top module centra
 // -------------------------------------------------------------
 
-lint_off -rule UNUSED    -file "*/Avg_Cent.v"
-lint_off -rule UNDRIVEN  -file "*/Avg_Cent.v"
-lint_off -rule WIDTH     -file "*/Avg_Cent.v"
-lint_off -rule DECLFILENAME -file "*/Avg_Cent.v"
+lint_off -rule UNUSED    -file "*/Avg_dup.v"
+lint_off -rule UNDRIVEN  -file "*/Avg_dup.v"
+lint_off -rule WIDTH     -file "*/Avg_dup.v"
+lint_off -rule DECLFILENAME -file "*/Avg_dup.v"
 
 // -------------------------------------------------------------
 // HLS generated submodules centra
 // -------------------------------------------------------------
 
-lint_off -rule UNUSED    -file "*/Avg_Cent_*.sv"
-lint_off -rule UNDRIVEN  -file "*/Avg_Cent_*.sv"
-lint_off -rule WIDTH     -file "*/Avg_Cent_*.sv"
-lint_off -rule DECLFILENAME -file "*/Avg_Cent_*.sv"
+lint_off -rule UNUSED    -file "*/Avg_dup_*.sv"
+lint_off -rule UNDRIVEN  -file "*/Avg_dup_*.sv"
+lint_off -rule WIDTH     -file "*/Avg_dup_*.sv"
+lint_off -rule DECLFILENAME -file "*/Avg_dup_*.sv"
 
 // -------------------------------------------------------------
 // HLS top module duplicate
@@ -42,3 +42,10 @@ lint_off -rule UNUSED    -file "*/Avg_dup_*.sv"
 lint_off -rule UNDRIVEN  -file "*/Avg_dup_*.sv"
 lint_off -rule WIDTH     -file "*/Avg_dup_*.sv"
 lint_off -rule DECLFILENAME -file "*/Avg_dup_*.sv"
+
+lint_off -rule STMTDLY  -file "*dupli*"
+lint_off -rule WIDTH    -file "*dupli*"
+lint_off -rule UNUSED   -file "*dupli*"
+lint_off -rule UNDRIVEN -file "*dupli*"
+lint_off -rule DECLFILENAME -file "*dupli*"
+lint_off -rule SYNCASYNCNET -file "*dupli*"

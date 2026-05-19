@@ -4,7 +4,7 @@
 // Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 // ==============================================================
 
-`timescale 1 ns / 1 ps 
+//`timescale 1 ns / 1 ps 
 
 module Avg_dup_Block_entry1_proc (
         ap_clk,
@@ -20,10 +20,7 @@ module Avg_dup_Block_entry1_proc (
         ImgBuff_in_read,
         imgBuff_out_din,
         imgBuff_out_full_n,
-        imgBuff_out_write,
-        Centro_dout,
-        Centro_empty_n,
-        Centro_read
+        imgBuff_out_write
 );
 
 parameter    ap_ST_fsm_state1 = 2'd1;
@@ -43,30 +40,25 @@ output   ImgBuff_in_read;
 output  [15:0] imgBuff_out_din;
 input   imgBuff_out_full_n;
 output   imgBuff_out_write;
-input  [15:0] Centro_dout;
-input   Centro_empty_n;
-output   Centro_read;
 
 reg ap_done;
 reg ap_idle;
 reg ap_ready;
 reg ImgBuff_in_read;
 reg imgBuff_out_write;
-reg Centro_read;
 
 reg    ap_done_reg;
 (* fsm_encoding = "none" *) reg   [1:0] ap_CS_fsm;
 wire    ap_CS_fsm_state1;
 reg    ap_block_state1;
-wire    grp_duplicateAndCentralizeImg_fu_28_ap_start;
-wire    grp_duplicateAndCentralizeImg_fu_28_ap_done;
-wire    grp_duplicateAndCentralizeImg_fu_28_ap_idle;
-wire    grp_duplicateAndCentralizeImg_fu_28_ap_ready;
-wire    grp_duplicateAndCentralizeImg_fu_28_Centro_read;
-wire    grp_duplicateAndCentralizeImg_fu_28_ImgBuff_in_read;
-wire   [15:0] grp_duplicateAndCentralizeImg_fu_28_imgBuff_out_din;
-wire    grp_duplicateAndCentralizeImg_fu_28_imgBuff_out_write;
-reg    grp_duplicateAndCentralizeImg_fu_28_ap_start_reg;
+wire    grp_duplicateAndCentralizeImg_fu_26_ap_start;
+wire    grp_duplicateAndCentralizeImg_fu_26_ap_done;
+wire    grp_duplicateAndCentralizeImg_fu_26_ap_idle;
+wire    grp_duplicateAndCentralizeImg_fu_26_ap_ready;
+wire    grp_duplicateAndCentralizeImg_fu_26_ImgBuff_in_read;
+wire   [15:0] grp_duplicateAndCentralizeImg_fu_26_imgBuff_out_din;
+wire    grp_duplicateAndCentralizeImg_fu_26_imgBuff_out_write;
+reg    grp_duplicateAndCentralizeImg_fu_26_ap_start_reg;
 reg    ap_block_state1_ignore_call0;
 wire    ap_CS_fsm_state2;
 reg    ap_block_state2_on_subcall_done;
@@ -79,25 +71,22 @@ wire    ap_ce_reg;
 initial begin
 #0 ap_done_reg = 1'b0;
 #0 ap_CS_fsm = 2'd1;
-#0 grp_duplicateAndCentralizeImg_fu_28_ap_start_reg = 1'b0;
+#0 grp_duplicateAndCentralizeImg_fu_26_ap_start_reg = 1'b0;
 end
 
-Avg_dup_duplicateAndCentralizeImg grp_duplicateAndCentralizeImg_fu_28(
+Avg_dup_duplicateAndCentralizeImg grp_duplicateAndCentralizeImg_fu_26(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_duplicateAndCentralizeImg_fu_28_ap_start),
-    .ap_done(grp_duplicateAndCentralizeImg_fu_28_ap_done),
-    .ap_idle(grp_duplicateAndCentralizeImg_fu_28_ap_idle),
-    .ap_ready(grp_duplicateAndCentralizeImg_fu_28_ap_ready),
-    .Centro_dout(Centro_dout),
-    .Centro_empty_n(Centro_empty_n),
-    .Centro_read(grp_duplicateAndCentralizeImg_fu_28_Centro_read),
+    .ap_start(grp_duplicateAndCentralizeImg_fu_26_ap_start),
+    .ap_done(grp_duplicateAndCentralizeImg_fu_26_ap_done),
+    .ap_idle(grp_duplicateAndCentralizeImg_fu_26_ap_idle),
+    .ap_ready(grp_duplicateAndCentralizeImg_fu_26_ap_ready),
     .ImgBuff_in_dout(ImgBuff_in_dout),
     .ImgBuff_in_empty_n(ImgBuff_in_empty_n),
-    .ImgBuff_in_read(grp_duplicateAndCentralizeImg_fu_28_ImgBuff_in_read),
-    .imgBuff_out_din(grp_duplicateAndCentralizeImg_fu_28_imgBuff_out_din),
+    .ImgBuff_in_read(grp_duplicateAndCentralizeImg_fu_26_ImgBuff_in_read),
+    .imgBuff_out_din(grp_duplicateAndCentralizeImg_fu_26_imgBuff_out_din),
     .imgBuff_out_full_n(imgBuff_out_full_n),
-    .imgBuff_out_write(grp_duplicateAndCentralizeImg_fu_28_imgBuff_out_write)
+    .imgBuff_out_write(grp_duplicateAndCentralizeImg_fu_26_imgBuff_out_write)
 );
 
 always @ (posedge ap_clk) begin
@@ -122,27 +111,19 @@ end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        grp_duplicateAndCentralizeImg_fu_28_ap_start_reg <= 1'b0;
+        grp_duplicateAndCentralizeImg_fu_26_ap_start_reg <= 1'b0;
     end else begin
         if (((1'b0 == ap_block_state1_ignore_call0) & (stage3 == 1'd0) & (1'b1 == ap_CS_fsm_state1))) begin
-            grp_duplicateAndCentralizeImg_fu_28_ap_start_reg <= 1'b1;
-        end else if ((grp_duplicateAndCentralizeImg_fu_28_ap_ready == 1'b1)) begin
-            grp_duplicateAndCentralizeImg_fu_28_ap_start_reg <= 1'b0;
+            grp_duplicateAndCentralizeImg_fu_26_ap_start_reg <= 1'b1;
+        end else if ((grp_duplicateAndCentralizeImg_fu_26_ap_ready == 1'b1)) begin
+            grp_duplicateAndCentralizeImg_fu_26_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (*) begin
     if (((stage3 == 1'd0) & (1'b1 == ap_CS_fsm_state2))) begin
-        Centro_read = grp_duplicateAndCentralizeImg_fu_28_Centro_read;
-    end else begin
-        Centro_read = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((stage3 == 1'd0) & (1'b1 == ap_CS_fsm_state2))) begin
-        ImgBuff_in_read = grp_duplicateAndCentralizeImg_fu_28_ImgBuff_in_read;
+        ImgBuff_in_read = grp_duplicateAndCentralizeImg_fu_26_ImgBuff_in_read;
     end else begin
         ImgBuff_in_read = 1'b0;
     end
@@ -190,7 +171,7 @@ end
 
 always @ (*) begin
     if (((stage3 == 1'd0) & (1'b1 == ap_CS_fsm_state2))) begin
-        imgBuff_out_write = grp_duplicateAndCentralizeImg_fu_28_imgBuff_out_write;
+        imgBuff_out_write = grp_duplicateAndCentralizeImg_fu_26_imgBuff_out_write;
     end else begin
         imgBuff_out_write = 1'b0;
     end
@@ -231,11 +212,11 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    ap_block_state2_on_subcall_done = ((grp_duplicateAndCentralizeImg_fu_28_ap_done == 1'b0) & (stage3 == 1'd0));
+    ap_block_state2_on_subcall_done = ((grp_duplicateAndCentralizeImg_fu_26_ap_done == 1'b0) & (stage3 == 1'd0));
 end
 
-assign grp_duplicateAndCentralizeImg_fu_28_ap_start = grp_duplicateAndCentralizeImg_fu_28_ap_start_reg;
+assign grp_duplicateAndCentralizeImg_fu_26_ap_start = grp_duplicateAndCentralizeImg_fu_26_ap_start_reg;
 
-assign imgBuff_out_din = grp_duplicateAndCentralizeImg_fu_28_imgBuff_out_din;
+assign imgBuff_out_din = grp_duplicateAndCentralizeImg_fu_26_imgBuff_out_din;
 
 endmodule //Avg_dup_Block_entry1_proc
